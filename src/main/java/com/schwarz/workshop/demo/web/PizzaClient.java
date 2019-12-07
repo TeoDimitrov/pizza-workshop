@@ -13,9 +13,9 @@ public class PizzaClient {
 
     private final WebClient webClient = WebClient.builder().build();
 
-
     Flux<Pizza> getExternalPizzas() {
-        return this.webClient.get().uri(API)
+        return this.webClient.get()
+                .uri(API)
                 .retrieve()
                 .bodyToFlux(Pizza.class);
     }

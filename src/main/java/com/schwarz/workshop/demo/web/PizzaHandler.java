@@ -33,7 +33,7 @@ public class PizzaHandler {
                 .map(pizza -> {
                     pizza.setPrice(vat.apply(pizza.getPrice()));
                     return pizza;
-                }).limitRate(2);
+                });
 
         return ServerResponse
                 .ok()

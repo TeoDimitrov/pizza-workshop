@@ -24,7 +24,8 @@ public class MySQLConfig {
                 .option(PORT, 3306)
                 .option(PASSWORD, "12345678")
                 .option(DATABASE, "r2dbc")
-                .option(CONNECT_TIMEOUT, Duration.ofSeconds(30)).build());
+                .option(CONNECT_TIMEOUT, Duration.ofSeconds(30))
+                .build());
 
     }
 }
