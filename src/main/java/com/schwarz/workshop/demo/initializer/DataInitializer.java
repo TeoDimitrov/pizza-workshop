@@ -1,6 +1,5 @@
 package com.schwarz.workshop.demo.initializer;
 
-import com.schwarz.workshop.demo.repository.PizzaRepository;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -28,8 +27,6 @@ public class DataInitializer implements CommandLineRunner {
     private static final String INSERT_MARGHERITA = "INSERT INTO pizzas(name, price) VALUES('Margherita', 7.45)";
 
     private final ConnectionFactory connectionFactory;
-
-    private final PizzaRepository pizzaRepository;
 
     @Override
     public void run(String... args) throws Exception {

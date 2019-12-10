@@ -2,6 +2,7 @@ package com.schwarz.workshop.demo.web;
 
 import com.schwarz.workshop.demo.domain.Pizza;
 import com.schwarz.workshop.demo.repository.PizzaRepository;
+import com.schwarz.workshop.demo.web.error.InvalidParamException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -41,7 +42,13 @@ public class PizzaHandler {
     }
 
     Mono<ServerResponse> getById(ServerRequest serverRequest) {
-        Long pizzaId = Long.valueOf(serverRequest.pathVariable("id"));
+        Long pizzaId;
+        try {
+            pizzaId = Long.valueOf(serverRequest.pathVariable("id"));
+        } catch (NumberFormatException e) {
+//            throw new InvalidParamException(HttpStatus.BAD_REQUEST, "Wrong param.");
+            return ServerResponse.status(HttpStatus.BAD_REQUEST).bodyValue("Wrong param.");
+        }
 
         return this.pizzaRepository.findById(pizzaId)
                 .switchIfEmpty(this.pizzaClient.getExternalPizza(pizzaId))

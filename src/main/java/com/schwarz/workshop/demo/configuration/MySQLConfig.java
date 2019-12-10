@@ -16,7 +16,7 @@ import static io.r2dbc.spi.ConnectionFactoryOptions.*;
 public class MySQLConfig {
 
     @Bean
-    public ConnectionFactory getH2ConnectionFactory() {
+    public ConnectionFactory getMySqlConnectionFactory() {
         return ConnectionFactories.get(ConnectionFactoryOptions.builder()
                 .option(DRIVER, "mysql")
                 .option(HOST, "127.0.0.1")
